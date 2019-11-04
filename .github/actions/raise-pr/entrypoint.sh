@@ -100,6 +100,7 @@ main () {
         echo "Target and current branch are identical (${BRANCH}), skipping."
     else
 
+        echo "=> DEAN TEST BRANCH: ${BRANCH} - ${BRANCH_FROM} "
         # If the from branch matches the to branch
         if  [[ $BRANCH == ${BRANCH_FROM} ]]; then
 
