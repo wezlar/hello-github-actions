@@ -1,0 +1,21 @@
+name: PR Release change -> Develop
+
+on:
+  push:
+    branches:
+    - 'release/**'
+
+jobs:
+  raise:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    # This step checks out a copy of your repository.
+    - uses: actions/checkout@v1
+    # This step references the directory that contains the action.
+    - uses: ./.github/actions/raise-pr
+      env:
+        BRANCH_FROM: ${{ github.ref }}
+        BRANCH_TO: 'develop'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

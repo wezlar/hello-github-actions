@@ -1,0 +1,10 @@
+# action.yml
+name: 'PR Raiser'
+description: 'Raises a PR from one branch to another'
+author: 'James Baker'
+inputs:
+  repo-token:
+    description: 'The GITHUB_TOKEN secret'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
