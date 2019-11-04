@@ -77,23 +77,24 @@ main () {
     # Example: https://github.com/actions/bin/tree/master/debug
     # Value: /github/workflow/event.json
     check_events_json;
+    # Get the name of the action that was triggered
+    BRANCH=$(jq --raw-output .ref "${GITHUB_EVENT_PATH}");
+    BRANCH=$(echo "${BRANCH/refs\/heads\//}")
+    echo "Found branch $BRANCH"
 
     # User specified branch to PR to, and check
     if [ -z "${BRANCH_FROM}" ]; then
         echo "No branch from is set, master will be used."
-        BRANCH_FROM=master
+        BRANCH_FROM=GITHUB_REF
     fi
+    BRANCH_FROM=$(echo "${BRANCH_FROM/refs\/heads\//}")
     echo "Pull request is raised from is $BRANCH_FROM"
 
     if [ -z "${BRANCH_TO}" ]; then
         BRANCH_TO=develop
     fi
+    BRANCH_TO=$(echo "${BRANCH_TO/refs\/heads\//}")
     echo "Pull requests will go to ${BRANCH_TO}"
-
-    # Get the name of the action that was triggered
-    BRANCH=$(jq --raw-output .ref "${GITHUB_EVENT_PATH}");
-    BRANCH=$(echo "${BRANCH/refs\/heads\//}")
-    echo "Found branch $BRANCH"
 
     # If it's to the target branch, ignore it
     if [[ "${BRANCH}" == "${BRANCH_TO}" ]]; then
