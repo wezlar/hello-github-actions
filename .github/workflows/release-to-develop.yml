@@ -16,6 +16,6 @@ jobs:
     # This step references the directory that contains the action.
     - uses: ./.github/actions/raise-pr
       env:
-        BRANCH_FROM: ${{ GITHUB_REF }}
+        BRANCH_FROM: ${{ github.ref }}
         BRANCH_TO: 'develop'
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
