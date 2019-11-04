@@ -85,7 +85,7 @@ main () {
     # User specified branch to PR to, and check
     if [ -z "${BRANCH_FROM}" ]; then
         echo "No branch from is set, master will be used."
-        BRANCH_FROM=GITHUB_REF
+        BRANCH_FROM="${GITHUB_REF}"
     fi
     BRANCH_FROM=$(echo "${BRANCH_FROM/refs\/heads\//}")
     echo "Pull request is raised from is $BRANCH_FROM"
