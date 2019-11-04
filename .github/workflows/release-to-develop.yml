@@ -3,7 +3,7 @@ name: PR Release change -> Develop
 on:
   push:
     branches:
-    - release/.*
+    - 'release/1.0.0'
 
 jobs:
   raise:
